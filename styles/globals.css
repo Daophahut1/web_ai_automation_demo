@@ -1,0 +1,58 @@
+/* Copied and adapted from original style.css */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;700&display=swap');
+
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+    background: linear-gradient(180deg, #eef4ff 0%, #f8fbff 100%);
+    color: #263238;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Trimmed: include the most important site styles used by pages */
+/* ...rest of CSS copied from style.css goes below - trimmed for brevity in this scaffold */
+.site-hero { background: linear-gradient(180deg,#ffffff,#eef6ff); color: #0b2240; padding: 72px 20px; border-radius: 16px; box-shadow: 0 12px 30px rgba(13,28,99,0.06); }
+.site-hero .hero-inner { max-width: 1100px; margin: 0 auto; display:flex; gap:30px; align-items:center; }
+.hero-kicker { color:#4f7cff; font-weight:700; margin-bottom:8px; }
+.hero-h1 { font-size:36px; line-height:1.05; margin:0; font-weight:800; }
+.hero-p { color: #475569; margin-top:12px; max-width:640px; }
+.feature-cards { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:26px; }
+.feature { background: white; padding:18px; border-radius:12px; border:1px solid rgba(13,28,99,0.06); box-shadow: 0 8px 20px rgba(13,28,99,0.04); }
+.feature h4 { margin:0 0 8px 0; color:#0d1c63 }
+.feature p { margin:0; color:#475569; font-size:0.95rem; }
+.hero-illustration { flex:0 0 420px; display:flex; align-items:center; justify-content:center; }
+.illustration-card { width:360px; height:280px; border-radius:14px; background: linear-gradient(180deg,#ffffff, #f6fbff); box-shadow: 0 20px 50px rgba(11,24,70,0.08); display:flex; align-items:center; justify-content:center; }
+
+/* floating icon */
+.illustration-inner { display:flex; flex-direction:column; align-items:center; gap:12px; padding: 18px; }
+.floating-icon { width:96px; height:96px; display:inline-flex; align-items:center; justify-content:center; }
+.floating-icon .icon { display:block; transform-origin: 48px 48px; will-change: transform; }
+.floating-icon .icon { animation: floatY 4.6s ease-in-out infinite, spinSlow 11s linear infinite; }
+@keyframes floatY { 0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)} }
+@keyframes spinSlow { 0%{transform:rotate(0)}100%{transform:rotate(360deg)} }
+
+/* hero bubbles */
+.hero-bubbles { position: absolute; left: 0; right: 0; top: -20px; bottom: -20px; pointer-events: none; overflow: hidden; z-index: 0; }
+.site-hero { position: relative; z-index: 1; }
+.hero-bubbles .bubble { position: absolute; display:block; border-radius: 999px; opacity: 0.14; background: radial-gradient(circle at 30% 30%, rgba(79,124,255,0.18), rgba(79,124,255,0.06)); transform: translate3d(0,0,0); }
+.hero-bubbles .b1 { width: 220px; height: 220px; left: 6%; top: 12%; animation: bubbleMove 18s linear infinite; }
+.hero-bubbles .b2 { width: 140px; height: 140px; left: 24%; top: 40%; animation: bubbleMove 14s linear infinite; opacity: 0.12; }
+.hero-bubbles .b3 { width: 320px; height: 320px; right: 6%; top: 8%; animation: bubbleMove 22s linear infinite; opacity: 0.11; }
+@keyframes bubbleMove { 0%{transform:translateY(0) scale(1) rotate(0deg)}25%{transform:translateY(-8px) scale(1.02) rotate(8deg)}50%{transform:translateY(-16px) scale(1.01) rotate(0deg)}75%{transform:translateY(-8px) scale(1.03) rotate(-6deg)}100%{transform:translateY(0) scale(1) rotate(0deg)} }
+
+/* small utilities */
+.mt-20 { margin-top: 20px; }
+.row { display:flex; gap:12px; }
+
+/* small spacing utilities used by TSX pages */
+.mt-3 { margin-top: 12px; }
+.ml-3 { margin-left: 12px; }
+
+/* small animation utilities used by Chakra components */
+.fade-in { animation: fadeIn 420ms ease both }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-6px) } to { opacity: 1; transform: translateY(0) } }

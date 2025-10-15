@@ -1,0 +1,27 @@
+{
+  "name": "property-ai-toolkit-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000"
+  },
+  "dependencies": {
+    "next": "15.5.5",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "@chakra-ui/react": "^2.8.0",
+    "@emotion/react": "^11.12.0",
+    "@chakra-ui/icons": "^2.0.14",
+  "@emotion/styled": "^11.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.7.2",
+    "@types/react": "19.2.2",
+    "typescript": "5.9.3"
+  },
+  "overrides": {
+    "@types/react": "19.2.2"
+  }
+}
