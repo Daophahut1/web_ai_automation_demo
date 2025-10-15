@@ -126,6 +126,26 @@ export default function Dashboard() {
         norm.IsOwner = typeof norm.IsOwner === 'string' ? /true|1|yes/i.test(norm.IsOwner) : Boolean(norm.IsOwner)
         return norm
       })
+
+      // detect incoming newest rows/ids for immediate notification
+      try {
+        const incomingRowNumbers = items.map((l: any) => Number(l.row_number || l.PostID || 0)).filter((n: number) => !Number.isNaN(n) && n > 0)
+        const incomingHighest = incomingRowNumbers.length ? Math.max(...incomingRowNumbers) : 0
+        const incomingLatestThree = [...items].sort((a: any, b: any) => (Number(b.row_number || b.PostID || 0) - Number(a.row_number || a.PostID || 0))).slice(0, 3).map((l: any) => Number(l.row_number || l.PostID || 0)).filter((n: number) => !Number.isNaN(n) && n > 0)
+
+        const hasNewByHighest = incomingHighest > (prevHighestRef.current || 0) && incomingHighest > 0
+        const hasNewByLatest = incomingLatestThree.some(id => id > 0 && !prevLatestThreeRef.current.includes(id) && !seenIds.includes(id))
+
+        if (hasNewByHighest || hasNewByLatest) {
+          try { playBeep() } catch (e) { /* ignore */ }
+          setChatOpen(true)
+        }
+
+        prevHighestRef.current = Math.max(prevHighestRef.current || 0, incomingHighest)
+        prevLatestThreeRef.current = incomingLatestThree
+      } catch (e) {
+        // ignore detection errors
+      }
       setListings(items)
       // Apply current sort after fetching
       if (sortOption) {
@@ -179,6 +199,9 @@ export default function Dashboard() {
   // activity candidates and filtered "new" items (reused by Activity panel and bubble)
   const activityCandidates: any[] = listings.length > 0 ? listings : alertLog.slice(0, 3)
   const [seenIds, setSeenIds] = useState<number[]>([])
+  // track previous highest row and latest IDs so we can detect truly new items
+  const prevHighestRef = useRef<number>(0)
+  const prevLatestThreeRef = useRef<number[]>([])
 
   // Persist seen IDs to localStorage so the user doesn't get repeated "new" badges
   useEffect(() => {
@@ -466,6 +489,7 @@ export default function Dashboard() {
           </Stack>
         </Box>
 
+
         {/* Floating chat/bubble button for new alerts */}
         <Box position="fixed" bottom="22px" right="22px" zIndex={60}>
           {chatOpen && (
@@ -519,6 +543,8 @@ export default function Dashboard() {
             )}
           </Box>
         </Box>
+
+
 
         <Text fontSize="lg" fontWeight="bold" mb={4}>🏠 Cleaned Property Listings</Text>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={8} mt={6}>
