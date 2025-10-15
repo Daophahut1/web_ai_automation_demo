@@ -32,7 +32,7 @@ function readFileAsBase64(file: File) {
     reader.onerror = reject
     reader.readAsDataURL(file)
   })
-}
+} 
 
 const pop = keyframes`
   0% { transform: scale(0.98); opacity: 0 }
