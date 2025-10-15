@@ -67,12 +67,12 @@ export default function Topbar({ onTestClick }: Props) {
               color={useColorModeValue('gray.800', 'gray.100')}
               variant="ghost"
             />
-            {/* <IconButton
+            <IconButton
               aria-label={colorMode === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
               icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               onClick={toggleColorMode}
               variant="ghost"
-            /> */}
+            />
             {/* <Button colorScheme="brand" mr={3} onClick={onTestClick}>Test Now</Button> */}
           </HStack>
 
@@ -100,12 +100,12 @@ export default function Topbar({ onTestClick }: Props) {
                   color={useColorModeValue('gray.800', 'gray.100')}
                   variant="ghost"
                 />
-                {/* <IconButton
+                <IconButton
                   aria-label={colorMode === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
                   icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
                   onClick={() => { toggleColorMode(); onClose(); }}
                   variant="ghost"
-                /> */}
+                />
               </HStack>
             </VStack>
           </DrawerBody>
